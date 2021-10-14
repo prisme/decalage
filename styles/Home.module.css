@@ -3,17 +3,141 @@
 
 .main {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
   color: #f8f0e3;
-  text-align: center;
+  padding: 0 2.5em;
+  /* text-align: center; */
+}
+
+.main h1,
+.main h2,
+.main h3 {
+  text-transform: uppercase;
+}
+.main h1,
+.main h3 {
+  margin-bottom: 0;
+}
+
+.main h1 {
+  margin-top: 1.1em;
+  font-size: 2.7em;
+  transform: skew(-20deg);
+  transition: transform 0.4s ease-in-out;
+}
+.main h1:hover {
+  transform: skew(0);
+}
+
+@media screen and (min-width: 700px) {
+  .main h1 {
+    margin-top: 0.5em;
+    font-size: 6em;
+  }
+}
+
+.main h2 {
+  margin-top: 2em;
+  transform: skew(-20deg);
+  text-decoration: underline;
+}
+.main h2.nounderline {
+  text-decoration: none;
+}
+.main h3 {
+  margin-top: 1em;
+  text-decoration: underline;
+}
+
+.main h3 + p,
+.baseline {
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.main h3 + p {
+  font-size: 0.6em;
+  letter-spacing: 0.05em;
+}
+
+.baseline {
+  margin-bottom: 3em;
+  font-size: 0.7em;
+}
+@media screen and (min-width: 700px) {
+  .baseline {
+    font-size: 1em;
+  }
 }
 
 .shader {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: -1;
-  opacity: 0.8;
+  opacity: 0.5;
+}
+
+.project + .video,
+.studio {
+  display: none;
+}
+.active {
+  display: block;
+  mix-blend-mode: exclusion;
+}
+
+@media screen and (min-width: 800px) {
+  .project {
+    display: block;
+    max-width: 400px;
+  }
+  .project h3,
+  .project p {
+    transition: transform 0.4s;
+    transform: skew(0);
+  }
+  .project:hover h3,
+  .project:hover p {
+    transform: skew(-20deg);
+  }
+
+  .project + .video,
+  .studio {
+    position: absolute;
+    right: 1em;
+    width: 100%;
+    z-index: -1;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.4s, opacity 0.4s;
+  }
+  .project + .video {
+    width: 50%;
+    top: 15em;
+    right: 5em;
+  }
+  .studio {
+    top: -10em;
+  }
+  .project:hover + .video,
+  .studioTitle:hover + .studio {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 0.4s;
+  }
+}
+
+.project .video iframe {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.project iframe {
+  display: block;
+  width: 100%;
 }

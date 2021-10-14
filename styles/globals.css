@@ -2,11 +2,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Major Mono Display, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: body, Helvetica, Arial, sans-serif;
 }
 
 body {
   background-color: black;
+  letter-spacing: -1px;
 }
 
 a {
@@ -16,4 +17,13 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "body";
+  src: url("/fonts/GoodSans-Medium.eot");
+  src: url("/fonts/GoodSans-Medium.eot?#iefix") format("embedded-opentype"), url("/fonts/GoodSans-Medium.woff2") format("woff2"), url("/fonts/GoodSans-Medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
 }

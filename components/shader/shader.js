@@ -1,10 +1,10 @@
 import ShadertoyReact from "shadertoy-react";
-import fs from "./glsl/plasma.glsl";
+import darksine from "./glsl/darksine.glsl";
 
 export default function Shader() {
   return (
     <>
-      <ShadertoyReact fs={fs} />
+      <ShadertoyReact fs={darksine} />
     </>
   );
 }
