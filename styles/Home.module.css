@@ -2,14 +2,11 @@
 }
 
 .main {
-  min-height: 100vh;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
+  position: absolute;
+  inset: 0;
   color: #f8f0e3;
   padding: 0 2.5em;
-  /* text-align: center; */
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .main h1,
@@ -41,12 +38,17 @@
 
 .main h2 {
   margin-top: 2em;
-  transform: skew(-20deg);
   text-decoration: underline;
+  transform: skew(-20deg);
+  transition: transform 0.4s ease-in-out;
 }
 .main h2.nounderline {
   text-decoration: none;
 }
+.main h2:not(.nounderline):hover {
+  transform: skew(0);
+}
+
 .main h3 {
   margin-top: 1em;
   text-decoration: underline;
@@ -54,7 +56,7 @@
 
 .main h3 + p,
 .baseline {
-  margin-top: 0;
+  margin-top: 0.2em;
   text-transform: uppercase;
 }
 
@@ -64,6 +66,7 @@
 }
 
 .baseline {
+  margin-top: -0.6em;
   margin-bottom: 3em;
   font-size: 0.7em;
 }
@@ -77,7 +80,7 @@
   position: fixed;
   inset: 0;
   z-index: -1;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .project + .video,
@@ -92,7 +95,7 @@
 @media screen and (min-width: 800px) {
   .project {
     display: block;
-    max-width: 400px;
+    max-width: 300px;
   }
   .project h3,
   .project p {
@@ -122,6 +125,9 @@
   }
   .studio {
     top: -10em;
+  }
+  .studioTitle {
+    max-width: 400px;
   }
   .project:hover + .video,
   .studioTitle:hover + .studio {
