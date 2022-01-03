@@ -1,14 +1,14 @@
 import Head from "next/head";
-import styles from "/assets/css/Home.module.css";
+import styles from "../assets/css/Home.module.css";
 
 import Shader from "../components/shader/shader";
-import { vhCalc } from "/assets/js/viewport-calc-height";
+import { vhCalc } from "../assets/js/viewport-calc-height";
 
 import Image from "next/image";
-import studioPic from "/assets/img/studio.jpg";
-import argos from "/assets/img/argos.png";
-import lexus1 from "/assets/img/lexus1.png";
-import lexus2 from "/assets/img/lexus2.png";
+import studioPic from "../assets/img/studio.jpg";
+import argos from "../assets/img/argos.png";
+import lexus1 from "../assets/img/lexus1.png";
+import lexus2 from "../assets/img/lexus2.png";
 
 import { useState, useEffect } from "react";
 
@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Décalage productions</title>
+        <title>Décalage Productions</title>
         <meta name="description" content="Composition & Sound Design for your Project" />
         <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎶</text></svg>" />
       </Head>
@@ -34,7 +34,7 @@ export default function Home() {
         <h1>Décalage</h1>
         <p className={styles.baseline}>Composition &amp; Sound Design for your Project</p>
 
-        <h2 className={styles.nounderline}>Projets</h2>
+        <h2 className={styles.nounderline}>Projects</h2>
         <a className={styles.project} target="_blank" rel="noreferrer" href="https://player.vimeo.com/video/538051635">
           <h3>Lexus 2021</h3>
           <p>Soundtrack</p>
@@ -74,15 +74,10 @@ export default function Home() {
           <a href="mailto:contact@decalageproductions.com">Contact</a>
         </h2>
 
-        <br />
-        <br />
-        <br />
-
         <div className={styles.shader}>
           <Shader />
         </div>
       </div>
-      {/* <Script src="https://player.vimeo.com/api/player.js" /> */}
     </div>
   );
 }

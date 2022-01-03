@@ -1,5 +1,4 @@
 module.exports = {
-  basePath: "/assets",
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,
