@@ -1,15 +1,14 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-
-import { vhCalc } from "../assets/viewport-calc-height";
+import styles from "/assets/css/Home.module.css";
 
 import Shader from "../components/shader/shader";
-import Script from "next/script";
+import { vhCalc } from "/assets/js/viewport-calc-height";
+
 import Image from "next/image";
-import studioPic from "../public/studio.jpg";
-import argos from "../public/argos.png";
-import lexus1 from "../public/lexus1.png";
-import lexus2 from "../public/lexus2.png";
+import studioPic from "/assets/img/studio.jpg";
+import argos from "/assets/img/argos.png";
+import lexus1 from "/assets/img/lexus1.png";
+import lexus2 from "/assets/img/lexus2.png";
 
 import { useState, useEffect } from "react";
 
@@ -27,8 +26,8 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Décalage productions</title>
-        <meta name="description" content="here be dragons" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Composition & Sound Design for your Project" />
+        <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎶</text></svg>" />
       </Head>
 
       <div className={styles.main}>
@@ -83,7 +82,7 @@ export default function Home() {
           <Shader />
         </div>
       </div>
-      <Script src="https://player.vimeo.com/api/player.js" />
+      {/* <Script src="https://player.vimeo.com/api/player.js" /> */}
     </div>
   );
 }
