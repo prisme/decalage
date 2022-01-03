@@ -5,6 +5,10 @@ module.exports = {
       exclude: /node_modules/,
       use: ["raw-loader", "glslify-loader"],
     });
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
 
     return config;
   },

@@ -1,8 +1,13 @@
 import Head from "next/head";
+import classNames from "classnames/bind";
 import styles from "../assets/css/Home.module.css";
 
 import Shader from "../components/shader/shader";
 import { vhCalc } from "../assets/js/viewport-calc-height";
+
+import Plyr from "plyr-react";
+import "plyr-react/dist/plyr.css";
+import Close from "../assets/img/close.svg";
 
 import Image from "next/image";
 import studioPic from "../assets/img/studio.jpg";
@@ -12,18 +17,30 @@ import lexus2 from "../assets/img/lexus2.png";
 
 import { useState, useEffect } from "react";
 
+let cx = classNames.bind(styles);
+
 export default function Home() {
-  const [isActive, setActive] = useState(false);
+  const [isStudioActive, setStudioActive] = useState(false);
+  const [isPlayerActive, setPlayerActive] = useState(false);
+  const [playerId, setPlayerId] = useState(null);
+
   useEffect(() => {
     vhCalc();
-  });
-  const toggleClass = (e) => {
+  }, []);
+
+  const toggleStudio = (e) => {
     if (window.matchMedia("(min-width: 700px)").matches) return;
     e.preventDefault();
-    setActive(!isActive);
+    setActive((isStudioActive) => !isStudioActive);
   };
+
+  const togglePlayer = (e) => {
+    setPlayerActive((isPlayerActive) => !isPlayerActive);
+    // setPlayerId
+  };
+
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Décalage Productions</title>
         <meta name="description" content="Composition & Sound Design for your Project" />
@@ -35,10 +52,10 @@ export default function Home() {
         <p className={styles.baseline}>Composition &amp; Sound Design for your Project</p>
 
         <h2 className={styles.nounderline}>Projects</h2>
-        <a className={styles.project} target="_blank" rel="noreferrer" href="https://player.vimeo.com/video/538051635">
+        <div className={styles.project} rel="538051635" onClick={togglePlayer}>
           <h3>Lexus 2021</h3>
           <p>Soundtrack</p>
-        </a>
+        </div>
         <div className={styles.video}>
           <Image src={lexus2} alt="" placeholder="blur" />
         </div>
@@ -60,11 +77,11 @@ export default function Home() {
         </div>
 
         <h2 className={styles.studioTitle}>
-          <a href="/studio.jpg" target="_blank" rel="noreferrer" onClick={toggleClass}>
+          <a href="/studio.jpg" target="_blank" rel="noreferrer" onClick={toggleStudio}>
             Studio
           </a>
         </h2>
-        <div className={`${styles.studio} ${isActive ? styles.active : ""}`}>
+        <div className={cx("studio", { studioActive: isStudioActive })}>
           <a href="/studio.jpg" target="_blank" rel="noreferrer">
             <Image src={studioPic} alt="studio de production son" placeholder="blur" />
           </a>
@@ -77,7 +94,29 @@ export default function Home() {
         <div className={styles.shader}>
           <Shader />
         </div>
+
+        <div className={cx("player", { playerActive: isPlayerActive })}>
+          <button className={styles.playerClose}>
+            <Close onClick={togglePlayer} />
+          </button>
+          <Plyr
+            source={{
+              type: "video",
+              sources: [
+                {
+                  src: "538051635",
+                  provider: "vimeo",
+                },
+              ],
+            }}
+            options={{
+              controls: ["play-large", "mute", "fullscreen"],
+              fullscreen: { iosNative: true },
+              hideControls: false,
+            }}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
