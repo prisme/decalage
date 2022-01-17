@@ -5,6 +5,7 @@ import styles from "../assets/css/Home.module.css";
 import Shader from "../components/shader/shader";
 import { vhCalc } from "../assets/js/viewport-calc-height";
 
+import { NextSeo } from "next-seo";
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
 import Close from "../assets/img/close.svg";
@@ -43,11 +44,37 @@ export default function Home() {
     setActive((isStudioActive) => !isStudioActive);
   };
 
+  const TITLE = "Décalage Productions";
+  const DESCRIPTION = "Composition & Sound Design for your Project";
+  // const URL = "https://www.decalageproductions.com/";
+  const URL = "https://decalage.vercel.app/";
+
   return (
     <>
+      <NextSeo
+        title={TITLE}
+        description={DESCRIPTION}
+        canonical={URL}
+        openGraph={{
+          type: "website",
+          url: URL,
+          title: TITLE,
+          site_name: TITLE,
+          description: DESCRIPTION,
+          images: [
+            {
+              url: `${URL}share.jpg`,
+              width: 1280,
+              height: 800,
+              alt: TITLE,
+              type: "image/jpeg",
+            },
+          ],
+        }}
+      />
       <Head>
-        <title>Décalage Productions</title>
-        <meta name="description" content="Composition & Sound Design for your Project" />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎶</text></svg>" />
       </Head>
 
