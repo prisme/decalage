@@ -41,7 +41,7 @@ export default function Home() {
   const toggleStudio = (e) => {
     if (window.matchMedia("(min-width: 700px)").matches) return;
     e.preventDefault();
-    setActive((isStudioActive) => !isStudioActive);
+    setStudioActive((isStudioActive) => !isStudioActive);
   };
 
   const TITLE = "Décalage Productions";

@@ -25,8 +25,6 @@ void mainImage(out vec4 fragColor,in vec2 fragCoord)
 {
   vec2 uv=(fragCoord.xy-iResolution.xy*.5)/iResolution.y;
   float d=dist(uv);
-  vec3 color=mix(vec3(.2902,.3961,.6275),vec3(0,.5,1),smoothstep(.02,.022,d));
-  // vec3 color=mix(vec3(.3882,.5608,.9333),vec3(0,.5,1),smoothstep(.02,.022,d));
-  
+  vec3 color=mix(vec3(.3529,.451,.6706),vec3(0,.5,1),smoothstep(.02,.022,d));
   fragColor=vec4(color,1.);
 }
