@@ -142,13 +142,6 @@
   right: 0;
   bottom: 0;
   background-color: #093367;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s linear 0.4s, opacity 0.4s;
-}
-.playerActive {
-  visibility: visible;
-  opacity: 1;
 }
 
 .playerClose,

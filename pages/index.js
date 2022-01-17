@@ -15,28 +15,32 @@ import argos from "../assets/img/argos.png";
 import lexus1 from "../assets/img/lexus1.png";
 import lexus2 from "../assets/img/lexus2.png";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 let cx = classNames.bind(styles);
 
 export default function Home() {
   const [isStudioActive, setStudioActive] = useState(false);
-  const [isPlayerActive, setPlayerActive] = useState(false);
   const [playerId, setPlayerId] = useState(null);
 
+  const escFunction = useCallback((event) => {
+    const { keyCode } = event;
+    if (keyCode === 27) {
+      setPlayerId(null);
+    }
+  }, []);
   useEffect(() => {
     vhCalc();
-  }, []);
+    window.addEventListener("keydown", escFunction);
+    return () => {
+      window.removeEventListener("keydown", escFunction);
+    };
+  }, [escFunction]);
 
   const toggleStudio = (e) => {
     if (window.matchMedia("(min-width: 700px)").matches) return;
     e.preventDefault();
     setActive((isStudioActive) => !isStudioActive);
-  };
-
-  const togglePlayer = (e) => {
-    setPlayerActive((isPlayerActive) => !isPlayerActive);
-    // setPlayerId
   };
 
   return (
@@ -52,7 +56,12 @@ export default function Home() {
         <p className={styles.baseline}>Composition &amp; Sound Design for your Project</p>
 
         <h2 className={styles.nounderline}>Projects</h2>
-        <div className={styles.project} rel="538051635" onClick={togglePlayer}>
+        <div
+          className={styles.project}
+          onClick={() => {
+            setPlayerId(538051635);
+          }}
+        >
           <h3>Lexus 2021</h3>
           <p>Soundtrack</p>
         </div>
@@ -60,18 +69,28 @@ export default function Home() {
           <Image src={lexus2} alt="" placeholder="blur" />
         </div>
 
-        <a className={styles.project} target="_blank" rel="noreferrer" href="https://player.vimeo.com/video/572623840">
+        <div
+          className={styles.project}
+          onClick={() => {
+            setPlayerId(572623840);
+          }}
+        >
           <h3>Lexus 2021</h3>
           <p>Soundtrack</p>
-        </a>
+        </div>
         <div className={styles.video}>
           <Image src={lexus1} alt="" placeholder="blur" />
         </div>
 
-        <a className={styles.project} target="_blank" rel="noreferrer" href="https://player.vimeo.com/video/568963259">
+        <div
+          className={styles.project}
+          onClick={() => {
+            setPlayerId(568963259);
+          }}
+        >
           <h3>Argos 2021</h3>
           <p>Sound Design &amp; Music Arrangement</p>
-        </a>
+        </div>
         <div className={styles.video}>
           <Image src={argos} alt="" placeholder="blur" />
         </div>
@@ -95,27 +114,34 @@ export default function Home() {
           <Shader />
         </div>
 
-        <div className={cx("player", { playerActive: isPlayerActive })}>
-          <button className={styles.playerClose}>
-            <Close onClick={togglePlayer} />
-          </button>
-          <Plyr
-            source={{
-              type: "video",
-              sources: [
-                {
-                  src: "538051635",
-                  provider: "vimeo",
-                },
-              ],
-            }}
-            options={{
-              controls: ["play-large", "mute", "fullscreen"],
-              fullscreen: { iosNative: true },
-              hideControls: false,
-            }}
-          />
-        </div>
+        {playerId && (
+          <div className={cx("player")}>
+            <button className={styles.playerClose}>
+              <Close
+                onClick={() => {
+                  setPlayerId(null);
+                }}
+              />
+            </button>
+            <Plyr
+              source={{
+                type: "video",
+                sources: [
+                  {
+                    src: playerId,
+                    provider: "vimeo",
+                  },
+                ],
+              }}
+              options={{
+                controls: ["play-large", "mute", "fullscreen"],
+                fullscreen: { iosNative: true },
+                hideControls: false,
+                autoplay: true,
+              }}
+            />
+          </div>
+        )}
       </div>
     </>
   );
