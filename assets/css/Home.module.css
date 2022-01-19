@@ -121,7 +121,14 @@
     right: 5em;
   }
   .studio {
-    top: -10em;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .studio a {
+    display: block;
+    position: relative;
+    height: 100%;
   }
   .studioTitle {
     max-width: 400px;
