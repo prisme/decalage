@@ -46,8 +46,7 @@ export default function Home() {
 
   const TITLE = "Décalage Productions";
   const DESCRIPTION = "Composition & Sound Design for your Project";
-  // const URL = "https://www.decalageproductions.com/";
-  const URL = "https://decalage.vercel.app/";
+  const URL = "https://www.decalageproductions.com/";
 
   return (
     <>
