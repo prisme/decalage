@@ -15,6 +15,7 @@ import studioPic from "../assets/img/studio.jpg";
 import argos from "../assets/img/argos.png";
 import lexus1 from "../assets/img/lexus1.png";
 import lexus2 from "../assets/img/lexus2.png";
+import reset from "../assets/img/reset.png";
 
 import { useState, useEffect, useCallback } from "react";
 
@@ -82,6 +83,18 @@ export default function Home() {
         <p className={styles.baseline}>Composition &amp; Sound Design for your Project</p>
 
         <h2 className={styles.nounderline}>Projects</h2>
+        <div
+          className={styles.project}
+          onClick={() => {
+            setPlayerId(760259697);
+          }}
+        >
+          <h3>Generation Reset</h3>
+          <p>Soundtrack</p>
+        </div>
+        <div className={styles.video}>
+          <Image src={reset} alt="" placeholder="blur" />
+        </div>
         <div
           className={styles.project}
           onClick={() => {
