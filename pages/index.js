@@ -89,7 +89,7 @@ export default function Home() {
             setPlayerId(760259697);
           }}
         >
-          <h3>MMIC Clothes</h3>
+          <h3>MMIC Clothes 2022</h3>
           <p>Soundtrack</p>
         </div>
         <div className={styles.video}>
